@@ -1,2 +1,15 @@
 ---
-# defaults file for ansible-role-libreswan-vpn
+epel_repo_url: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
+
+epel_repo_gpg_key_url: "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}"
+
+epel_repofile_path: "/etc/yum.repos.d/epel.repo"
+
+vpn_packages:
+  - libreswan
+  - xl2tpd
+
+vpn_sysctl:
+  - { name: net.ipv4.ip_forward, value: 1 }
+  - { name: net.ipv4.conf.all.accept_redirects, value: 0 }
+  - { name: net.ipv4.conf.all.send_redirects, value: 1 }
