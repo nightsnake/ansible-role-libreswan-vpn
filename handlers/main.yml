@@ -4,3 +4,6 @@
 
 - name: flush routes
   command: /sbin/sysctl -w net.ipv4.route.flush=1
+
+- name: reload iptables
+  command: /sbin/iptables-restore -! < /etc/iptables.rules

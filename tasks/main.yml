@@ -78,6 +78,16 @@
     group: root
     mode: '0644'
 
+- name: Create iptables.rules restore file
+  template:
+    src: iptables.restore.j2
+    dest: /etc/ipteables.restore
+    owner: root
+    group: root
+    mode: '0600'
+    notify:
+      - reload iptables
+
 - name: Recommended sysctl
   sysctl:
     name: "{{ item.name }}"
