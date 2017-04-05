@@ -69,3 +69,15 @@
     owner: root
     group: root
     mode: '0600'
+
+- name: Recommended sysctl
+  sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    state: present
+    reload: no
+    ignoreerrors: yes
+  with_items: "{{ vpn_sysctl }}"
+  notify:
+    - reload sysctl.conf
+    - flush routes
