@@ -65,7 +65,7 @@
 - name: Create ipsec passwd file
   template:
     src: passwd.j2
-    dest: /etc/ipsec/passwd
+    dest: /etc/ipsec.d/passwd
     owner: root
     group: root
     mode: '0600'
