@@ -1,2 +1,6 @@
 ---
-# handlers file for ansible-role-libreswan-vpn
+- name: reload sysctl.conf
+  command: /sbin/sysctl -p
+
+- name: flush routes
+  command: /sbin/sysctl -w net.ipv4.route.flush=1
