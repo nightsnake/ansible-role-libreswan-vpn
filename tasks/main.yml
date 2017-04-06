@@ -99,6 +99,7 @@
   notify:
     - reload sysctl.conf
     - flush routes
+  when: travisci is undefined
 
 - name: Ensure fail2ban is running
   service:
