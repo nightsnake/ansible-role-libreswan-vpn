@@ -125,3 +125,4 @@
     name: iptables
     state: started
     enabled: yes
+  when: travisci is undefined
