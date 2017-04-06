@@ -44,15 +44,15 @@ Example Playbook
 ----------------
 
 
-- hosts: all
-  become: true
-  vars:
-     vpn_ipsec_psk: grandmascookies
-     vpn_users:
-       - { 'username': 'vpnuser','password': 'p@ssw0rd', 'encpasswd': '$1$Xc6iJu8M$syQ.4M2hsXv3qmdNn4K7.0' }
-    
-  roles:
-    - austincloudguru.libreswan-vpn
+     - hosts: all
+       become: true
+       vars:
+          vpn_ipsec_psk: grandmascookies
+          vpn_users:
+            - { 'username': 'vpnuser','password': 'p@ssw0rd', 'encpasswd': '$1$Xc6iJu8M$syQ.4M2hsXv3qmdNn4K7.0' }
+         
+       roles:
+         - austincloudguru.libreswan-vpn
 
 License
 -------
