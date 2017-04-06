@@ -1,38 +1,66 @@
-Role Name
+Ansible-Role: libreswan-vpn
 =========
 
-A brief description of the role goes here.
+This role builds out a libreswan VPN that can be used to allow both Mac and Windows clients to connect.  It is based on Lin Song's [setup-isec-vpn](https://github.com/hwdsl2/setup-ipsec-vpn) script for Centos.  The primary motivation for moving to a Ansible role rather than just use the script is so I could add multple users rather than just one.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role is written for CentOS 7 (ami-6d1c2007).  I may revisit later and add Ubuntu or AWS Linux.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+The role will run without any variables, but there are a few that you will probably want to set.  The two primary variables that need to be changes are related to the credentials.
+
+     vpn_ipsec_psk: grandmascookies
+     vpn_users:
+       - { 'username': 'vpnuser','password': 'p@ssw0rd', 'encpasswd': '$1$Xc6iJu8M$syQ.4M2hsXv3qmdNn4K7.0' }
+
+You can encrypt the password for encpassword with OpenSSL.
+
+     openssl passwd -1 p@ssw0rd
+
+Since password are stored in clear text, they should never be checked in to github (without encryption, at least).
+
+For the networks, I use the the blocks listed below.  If they clash with any of your current networks you will probably want to change them.
+
+     vpn_l2tp_net: 192.168.42.0/24                   # Network for l2tp
+     vpn_l2tp_local: 192.168.42.1                    # Local l2tp address
+     vpn_l2tp_pool: 192.168.42.10-192.168.42.250     # DHCP pool for l2tp
+     vpn_xauth_net: 192.168.43.0/24                  # Network for Xauth
+     vpn_xauth_pool: 192.168.43.10-192.168.43.250    # DHCP pool for Xauth
+     vpn_dns_srv1: 8.8.8.8                           # DNS Server 1
+     vpn_dns_srv2: 8.8.4.4                           # DNS Server 2
+
+You 
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+- hosts: all
+  become: true
+  vars:
+     vpn_ipsec_psk: grandmascookies
+     vpn_users:
+       - { 'username': 'vpnuser','password': 'p@ssw0rd', 'encpasswd': '$1$Xc6iJu8M$syQ.4M2hsXv3qmdNn4K7.0' }
+    
+  roles:
+    - austincloudguru.libreswan-vpn
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Mark Honomichl aka [AustinCloudGuru](https://austincloud.guru)
+Created in 2016
