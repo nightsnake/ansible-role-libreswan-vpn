@@ -9,6 +9,7 @@ vpn_packages:
   - libreswan
   - xl2tpd
   - fail2ban
+  - iptables-services
 
 vpn_sysctl:
   - { name: net.ipv4.ip_forward, value: 1 }

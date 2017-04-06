@@ -99,3 +99,21 @@
   notify:
     - reload sysctl.conf
     - flush routes
+
+- name: Ensure fail2ban is running
+  service:
+    name: fail2ban
+    state: started
+    enabled: yes
+
+- name: Ensure ipsec is running
+  service:
+    name: ipsec
+    state: started
+    enabled: yes
+
+- name: Ensure iptables is running
+  service:
+    name: iptables
+    state: started
+    enabled: yes
