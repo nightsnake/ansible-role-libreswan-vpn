@@ -57,7 +57,7 @@
 - name: Create chap secrets file
   template:
     src: chap-secrets.j2
-   dest: /etc/ppp/chap-secrets
+    dest: /etc/ppp/chap-secrets
     owner: root
     group: root
     mode: '0644'
