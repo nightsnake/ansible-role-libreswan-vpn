@@ -3,7 +3,7 @@ services: docker
 
 env:
   - distro: centos7
-    init: /usr/lib/systemd/systemd
+    init: /usr/sbin/init
     run_opts: "--privileged -e \"container=docker\" --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
