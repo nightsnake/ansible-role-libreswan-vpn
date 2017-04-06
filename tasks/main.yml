@@ -112,6 +112,7 @@
     name: ipsec
     state: started
     enabled: yes
+  when: travisci is undefined
 
 - name: Ensure xl2tpd is running
   service:
@@ -125,4 +126,3 @@
     name: iptables
     state: started
     enabled: yes
-  when: travisci is undefined
