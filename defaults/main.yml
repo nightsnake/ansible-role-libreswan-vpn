@@ -7,7 +7,7 @@ epel_repofile_path: "/etc/yum.repos.d/epel.repo"
 
 vpn_packages:
   - libreswan
-  #- xl2tpd
+  - xl2tpd
   - fail2ban
   - iptables-services
 
