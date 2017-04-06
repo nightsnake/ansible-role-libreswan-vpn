@@ -42,7 +42,7 @@
   template:
     src: xl2tpd.conf.j2
     dest: /etc/xl2tpd/xl2tpd.conf
-   owner: root
+    owner: root
     group: root
     mode: '0644'
 
