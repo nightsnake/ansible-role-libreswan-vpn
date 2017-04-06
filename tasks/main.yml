@@ -81,7 +81,7 @@
 - name: Create iptables.rules restore file
   template:
     src: iptables.restore.j2
-    dest: /etc/ipteables.restore
+    dest: /etc/iptables.restore
     owner: root
     group: root
     mode: '0600'
