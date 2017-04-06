@@ -99,7 +99,6 @@
   notify:
     - reload sysctl.conf
     - flush routes
-  when: travisci is undefined
 
 - name: Ensure fail2ban is running
   service:
@@ -112,14 +111,12 @@
     name: ipsec
     state: started
     enabled: yes
-  when: travisci is undefined
 
 - name: Ensure xl2tpd is running
   service:
     name: xl2tpd
     state: started
     enabled: yes
-  when: travisci is undefined
 
 - name: Ensure iptables is running
   service:
