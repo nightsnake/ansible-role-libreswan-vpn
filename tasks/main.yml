@@ -85,8 +85,8 @@
     owner: root
     group: root
     mode: '0600'
-    notify:
-      - reload iptables
+  notify:
+    - reload iptables
 
 - name: Recommended sysctl
   sysctl:
