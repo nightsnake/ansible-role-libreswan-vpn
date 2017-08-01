@@ -11,6 +11,11 @@ vpn_packages:
   - fail2ban
   - iptables-services
 
+debian_vpn_packages:
+  - xl2tpd
+  - fail2ban
+  - iptables-persistent
+
 vpn_sysctl:
   - { name: net.ipv4.ip_forward, value: 1 }
   - { name: net.ipv4.conf.all.accept_redirects, value: 0 }
@@ -45,8 +50,9 @@ vpn_xauth_pool: 192.168.43.10-192.168.43.250
 vpn_dns_srv1: 8.8.8.8
 vpn_dns_srv2: 8.8.4.4
 
-
 vpn_ipsec_psk: grandmascookies
 
 vpn_users:
   - { 'username': 'vpnuser','password': 'p@ssw0rd', 'encpasswd': '$1$Xc6iJu8M$syQ.4M2hsXv3qmdNn4K7.0' }
+
+libreswan_ver: 3.16-1_amd64

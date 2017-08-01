@@ -1,0 +1,11 @@
+---
+- name: Download libreswan package
+  apt:
+    deb: "https://download.libreswan.org/binaries/debian/jessie/libreswan_{{libreswan_ver}}.deb"
+
+- name: Install Packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ debian_vpn_packages }}"
+
