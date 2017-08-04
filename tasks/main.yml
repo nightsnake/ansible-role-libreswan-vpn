@@ -61,7 +61,7 @@
     group: root
     mode: '0644'
 
-- name: Create iptables.rules restore file
+- name: Create iptables.rules restore file for CentOS
   template:
     src: iptables.restore.j2
     dest: /etc/iptables.rules
@@ -70,6 +70,18 @@
     mode: '0600'
   notify:
     - reload iptables
+  when: ansible_os_family == 'RedHat'
+
+- name: Create iptables.rules restore file for CentOS
+  template:
+    src: iptables.restore.j2
+    dest: /etc/iptables/rules.v4
+    owner: root
+    group: root
+    mode: '0600'
+  notify:
+    - reload iptables
+  when: ansible_os_family == 'Debian'
 
 - name: Recommended sysctl
   sysctl:
