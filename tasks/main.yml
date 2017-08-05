@@ -60,6 +60,7 @@
     owner: root
     group: root
     mode: '0644'
+    backup: yes
 
 - name: Create iptables.rules restore file for CentOS
   template:
